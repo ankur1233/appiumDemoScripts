@@ -29,9 +29,10 @@ public class TestBase{
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew.NameActivity");
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew");
 
-        //desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/kotakcherry/Downloads/test.apk");
+       // desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/kotakcherry/Downloads/test.apk");
 
         // desiredCapabilities.setCapability("noReset","true");
+        desiredCapabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 600);
 
         URL url = null;
         try {
@@ -42,7 +43,7 @@ public class TestBase{
         }
 
         driver = new AndroidDriver<MobileElement>(url, desiredCapabilities);
-       // driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+       //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public AndroidDriver<MobileElement> getDriver(){

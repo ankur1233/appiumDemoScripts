@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Locale;
 
 public class AppScreen extends TestBase {
 
@@ -36,7 +37,6 @@ public class AppScreen extends TestBase {
     List<MobileElement> closeNoThanks;
 
 
-
     @AndroidFindBy(id = "edt_sim_network")
     MobileElement simNetwork;
 
@@ -50,38 +50,35 @@ public class AppScreen extends TestBase {
 
     public void handleAds(){
 
-
-        System.out.println("Test");
-
-        try {
-            if (closeX.size() > 0) {
+          try {
+            if (closeX.size()!=0) {
                 closeX.get(0).click();
                 System.out.println("Add Found");
             }
 
+            else{
+                  closeNoThanks.get(0).click();
+                  System.out.println("Add Found");
+              }
 
         }catch (Exception e){
 
-            if (closeNoThanks.size() > 0) {
-                closeNoThanks.get(0).click();
-                System.out.println("Add Found");
-            }
+
 
         }
-
-
+        System.out.println("Add Found");
 
     }
 
 
     public AppScreen enterUserName(String name){
-        //handleAds();
+        handleAds();
         txtUserName.sendKeys(name);
         nextBtn.click();
         return this;
     }
     public AppScreen enterMobileNumber(String number){
-      //  handleAds();
+      handleAds();
        /*
         getDriver().startActivity(new Activity("best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew",
                 "best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew.MobNumActivity"));
@@ -92,7 +89,7 @@ public class AppScreen extends TestBase {
     }
 
     public AppScreen enterNetwork(String network){
-      //  handleAds();
+        handleAds();
 /*
 
         getDriver().startActivity(new Activity("best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew",
@@ -105,20 +102,20 @@ public class AppScreen extends TestBase {
     }
 
     public AppScreen enterCountry(String country){
-      //  handleAds();
+       handleAds();
 /*
 
         getDriver().startActivity(new Activity("best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew",
                 "best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew.CountryListActivity"));
 */
 
-
+        countryName.click();
         countryName.sendKeys(country);
         return this;
     }
 
     public AppScreen selectDataType(String data){
-       // handleAds();
+      //  handleAds();
 
 /*
         getDriver().startActivity(new Activity("best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew",
@@ -134,7 +131,7 @@ public class AppScreen extends TestBase {
     }
 
     public AppScreen selectDataOffer(String offer){
-      //  handleAds();
+     //   handleAds();
 
 
      /*   getDriver().startActivity(new Activity("best_freeinternet.free_internetdata_50GB_internet_prank.FreeData_guidenew",
@@ -152,7 +149,7 @@ public class AppScreen extends TestBase {
     }
 
     public AppScreen clickOnNext(){
-       // handleAds();
+       //handleAds();
         mobileNext.click();
         return this;
     }
