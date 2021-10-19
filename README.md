@@ -8,14 +8,6 @@ Prerequisites:
 
 Build and Test:
 ---------------
-*	Clone the repository. >>  git clone https://git.kotakcherry.in/sdet_kotak_digital/kotakcherrytestautomation.git
+*	Clone the repository. >>  git clone git@github.com:ankur1233/appiumDemoScripts.git
 *	Open command prompt and go to directory.
-*	To run on local environment use command >> mvn clean test -DsuiteXmlFile=TestXML/cherryApp_PreLogin.xml -DdevicePlatform=android
 *   mvn clean package -DskipTests=true - AWS Config , Disable app,
-
-
-Supported Platforms
--------------------------
-* Android
-* IOS
-* Web Application
