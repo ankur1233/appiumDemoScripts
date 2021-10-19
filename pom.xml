@@ -1,107 +1,286 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.eribank</groupId>
-  <artifactId>MobileTestDemo</artifactId>
+  <groupId>org</groupId>
+  <artifactId>Automation</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-  <name>MobileTestDemo</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
+  <!--Properties to set version globally-->
   <properties>
+    <allure.version>2.13.2</allure.version>
+    <java.version>1.8</java.version>
+    <aspectj.version>1.9.5</aspectj.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <browser></browser>
+    <device></device>
+    <suiteXmlFile></suiteXmlFile>
   </properties>
 
+  <!--Optional -->
+  <name>Automation</name>
+  <description>Project Automation</description>
+
+  <repositories>
+    <repository>
+      <id>seeetest</id>
+      <name>seetest client</name>
+      <url>https://cloud.experitest.com/repo/</url>
+    </repository>
+  </repositories>
+
+  <!--Dependincese-->
+  <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
     <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.1.0</version>
-      <scope>test</scope>
+      <groupId>com.experitest</groupId>
+      <artifactId>appium-seetest-extension</artifactId>
+      <version>LATEST</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-    <dependency>
-      <groupId>io.appium</groupId>
-      <artifactId>java-client</artifactId>
-      <version>7.4.1</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <!--Selenium lib for automation-->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
+      <!-- <version>3.141.592.53.1</version> -->
       <version>3.141.59</version>
     </dependency>
+
+    <!--Mobile Automation Lib-->
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>7.3.0</version>
+    </dependency>
+
+
+    <!--TestFramework lib TestNg control execution -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.1.0</version>
-      <scope>compile</scope>
+      <version>6.10</version>
     </dependency>
+
+    <!-- Log4j lib -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <!--Excel lib-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.17-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.17-beta1</version>
+    </dependency>
+
+    <!--Report lib-->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.automatedowl</groupId>
+      <artifactId>allure-environment-writer</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>2.8.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.8.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+
 
   </dependencies>
 
+  <!--Plugin Build while execution-->
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
+
+      <!--SureFire Plugin for maven run with testNg framework-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+
+          <!--TestNg xml file config , compulsory to pass this parameter exp : -DsuiteXMlFile=relative path of file-->
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+          <!--                   <suiteXmlFiles>
+                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                             </suiteXmlFiles>-->
+
+          <!--Env variable config-->
+          <!-- <systemPropertyVariables>
+               <device>${device}</device>
+           </systemPropertyVariables>
+           -->
+        </configuration>
+
+        <dependencies>
+          <!--Run reports configuration-->
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!--Maven compiler plugin to compile code using maven goals-->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
       </plugin>
+      <!--Pack source code into jar -->
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+
+      <!--AWS device Farm configuration-->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--copy all jar file into specified output dir-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/dependency-jars/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--zip.xml file required for AWS
+
+      -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <finalName>zip-with-dependencies</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assembly/zip.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
     </plugins>
   </build>
+
+  <!--    <reporting>
+          <excludeDefaults>true</excludeDefaults>
+          <plugins>
+              &lt;!&ndash;Plugin to run allure report with maven command&ndash;&gt;
+              <plugin>
+                  <groupId>io.qameta.allure</groupId>
+                  <artifactId>allure-maven</artifactId>
+                  <version>2.10.0</version>
+                  <configuration>
+                      <reportVersion>${allure.version}</reportVersion>
+                  </configuration>
+              </plugin>
+          </plugins>
+      </reporting>-->
+
+
 </project>

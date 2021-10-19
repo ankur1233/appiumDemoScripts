@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="App Scripts" verbose="1" preserve-order="true" >
+
+    <test name="App Scripts" preserve-order="true">
+        <classes>
+            <class name="com.freeData.GetFreeDataScript"/>
+        </classes>
+    </test>
+
+</suite>
